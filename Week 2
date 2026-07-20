@@ -1,0 +1,136 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Load cleaned dataset
+df = pd.read_csv("Cleaned_Dataset.csv")
+
+# Convert Date column
+df["Date"] = pd.to_datetime(df["Date"])
+
+Week 2 Project Workflow (Follow these steps)
+Step 1: Import the required libraries
+import pandas as pd
+import matplotlib.pyplot as plt
+If you want nicer charts:
+import seaborn as sns
+________________________________________
+Step 2: Load the cleaned dataset
+df = pd.read_csv("Dataset for Data Analytics - Cleaned.csv")
+Step 3: Explore the dataset
+Run these commands one by one:
+df.head()
+df.shape
+df.columns
+df.info()
+df.describe()
+These give you:
+•	Number of rows and columns 
+•	Column names 
+•	Data types 
+•	Summary statistics 
+________________________________________
+Step 4: Calculate Basic Statistics
+The project specifically asks for:
+•	Mean 
+•	Median 
+•	Count 
+For all numeric columns:
+df.describe()
+Or individually:
+df.mean(numeric_only=True)
+df.median(numeric_only=True)
+df.count()
+________________________________________
+Step 5: Check Missing Values
+Even though it's cleaned, verify it:
+df.isnull().sum()
+Expected:
+All columns = 0
+(or CouponCode may still have missing values if they were intentionally left blank.)
+________________________________________
+Step 6: Check Duplicate Rows
+df.duplicated().sum()
+Expected:
+0
+________________________________________
+Step 7: Find Trends
+Now start answering business questions.
+Sales by Product Category
+df.groupby("ProductCategory")["SalesAmount"].sum().sort_values(ascending=False)
+________________________________________
+Sales by Region
+df.groupby("Region")["SalesAmount"].sum()
+________________________________________
+Average Sales by Payment Method
+df.groupby("PaymentMethod")["SalesAmount"].mean()
+________________________________________
+Total Sales by Month
+If your Date column is already datetime:
+df["Date"] = pd.to_datetime(df["Date"])
+
+df["Month"] = df["Date"].dt.month_name()
+
+df.groupby("Month")["SalesAmount"].sum()
+________________________________________
+Top 10 Customers
+df.groupby("CustomerID")["SalesAmount"].sum().sort_values(ascending=False).head(10)
+________________________________________
+Step 8: Find Outliers
+Boxplot
+plt.figure(figsize=(8,5))
+plt.boxplot(df["SalesAmount"])
+plt.title("Sales Amount")
+plt.show()
+
+Find the actual outliers
+Q1 = df["SalesAmount"].quantile(0.25)
+
+Q3 = df["SalesAmount"].quantile(0.75)
+
+IQR = Q3 - Q1
+
+lower = Q1 - 1.5*IQR
+
+upper = Q3 + 1.5*IQR
+
+outliers = df[(df["SalesAmount"] < lower) | (df["SalesAmount"] > upper)]
+
+outliers
+________________________________________
+Step 9: Visualizations
+Histogram
+plt.figure(figsize=(8,5))
+plt.hist(df["SalesAmount"], bins=20)
+plt.title("Sales Distribution")
+plt.xlabel("Sales Amount")
+plt.ylabel("Frequency")
+plt.show()
+________________________________________
+Bar Chart
+df.groupby("ProductCategory")["SalesAmount"].sum().plot(kind="bar")
+plt.title("Sales by Category")
+plt.show()
+________________________________________
+Scatter Plot
+plt.scatter(df["Quantity"], df["SalesAmount"])
+plt.xlabel("Quantity")
+plt.ylabel("Sales Amount")
+plt.show()
+________________________________________
+Correlation
+df.corr(numeric_only=True)
+Optional heatmap:
+sns.heatmap(df.corr(numeric_only=True), annot=True)
+plt.show()
+________________________________________
+Step 10: Write Observations
+Examples:
+•	Dataset contains 1200 records. 
+•	No duplicate records found. 
+•	Missing values were handled during Project 1. 
+•	Sales are concentrated in a few product categories. 
+•	A few high-value transactions are identified as outliers. 
+•	Quantity and Sales Amount show a positive relationship. 
+•	Some regions generate significantly higher revenue than others.
+
