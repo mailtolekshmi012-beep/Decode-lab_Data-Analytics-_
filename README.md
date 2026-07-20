@@ -1,4 +1,4 @@
-# Decode-lab_Data-Analytics-_week1
+# Decode-lab_Data-Analytics-_week1 & week 2
 # DecodeLabs Data Analytics Internship – Project 1
 
 ## Data Cleaning & Preparation
