@@ -46,3 +46,38 @@ Clean a raw e-commerce dataset by identifying and correcting data quality issues
 ### Learning Outcomes
 
 This project helped me understand the importance of data cleaning and preparation before performing any analysis or visualization. It also provided hands-on experience using both Python (Pandas) and Excel for real-world data quality improvement tasks.
+
+
+### Week 2 - Exploratory Data Analysis (EDA)
+
+Performed Exploratory Data Analysis to discover patterns and insights.
+
+Tasks:
+- Descriptive statistics
+- Distribution analysis
+- Trend analysis
+- Outlier detection
+- Data visualization
+- Business insights
+
+# Week 2 - Exploratory Data Analysis
+
+## Objective
+
+Analyze the cleaned dataset to identify trends, distributions, and outliers.
+
+## Tasks
+
+- Descriptive statistics
+- Data visualization
+- Outlier detection
+- Trend analysis
+- Business insights
+
+## Tools
+
+- Python
+- Pandas
+- Matplotlib
+- Seaborn
+- 
